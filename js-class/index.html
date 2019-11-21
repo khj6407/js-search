@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>search</title>
+    <style>
+      #js-select {
+        width: 70px;
+        height: 25px;
+        border: 2px solid orangered;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- onchange : select의 값이 바뀌면 function을 실행해라 -->
+    <select name="" id="js-select" onchange="changeValue()"></select>
+
+    <div id="infoArea">
+      <div id="name"></div>
+      <div id="gender"></div>
+      <div id="birth"></div>
+    </div>
+  </body>
+
+  <script>
+    //배열 <- 하나의 저장공간에 여러개를 저장할 수 있는 기능
+    // 1. 객체를 저장할 공간을 만든다.
+    // 2. 객체별 정보를 넣는다.
+
+    //{} =  객체
+    //[] =  배열
+    const people = [
+      { name: "ryan", gender: "M", birth: "071010" },
+      { name: "muzi", gender: "F", birth: "010909" },
+      { name: "con", gender: "M", birth: "080322" }
+    ];
+
+    /*
+        1. people이 가지고 있는 객체 만큼 반복
+        2. 반복 할 때, 객체들이 각각에 가지고 있는 name을 select에 넣는다.
+    */
+    //ES6 존재하는 문법 - allow function //ES6, ES7
+    const valueSetting = () => {
+      //HTML에 만들어져 있는 "js-select"를 가져온다.
+      const selectBox = document.getElementById("js-select"); //DOM을 넣었다.
+
+      //people이라는 데이터가 가지고 있는 개수 만큼 반복.
+      //하나씩 뽑아서 p에다가 넣는다.
+      people.map(p => {
+        //option이라는 DOM을 생성
+        const option = document.createElement("option");
+
+        //HTML에서 가져온 DOM에다가 append
+        option.text = p.name;
+        selectBox.appendChild(option);
+      });
+    };
+
+    //값이 바뀌면 실행하는 함수
+    const changeValue = () => {
+      //1. 바뀐값(선택한 값), people에 있는 객체 중에서 누구랑 똑같은가?
+      //js-select아이디를 가진 html을 selectBox에 저장
+      const selectBox = document.getElementById("js-select");
+
+      //저장된 selectBox의 현재 값을 currentValue에 저장
+      const currentValue = selectBox.options[selectBox.selectedIndex].value;
+
+      //2. 똑같으면, 그 객체가 가지고 있는 데이터를 html에 innerTEXT해주세요
+      people.map(p => {
+        if (p.name === currentValue) {
+          console.log(p.name);
+          console.log(p.gender);
+          console.log(p.birth);
+
+          const name = document.getElementById("name");
+          const gender = document.getElementById("gender");
+          const birth = document.getElementById("birth");
+
+          //p.xxxx를 가져온 html에 넣어야 함
+          name.innerText = p.name;
+          gender.innerText = p.gender;
+          birth.innerText = p.birth;
+        }
+      });
+    };
+    //init : 페이지가 로드 된후에 실행해라
+    function init() {
+      valueSetting();
+    }
+
+    init();
+  </script>
+</html>

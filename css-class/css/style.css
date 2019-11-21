@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+.ms {
+  width: 400px;
+  height: 680px;
+  background-color: black;
+  margin: 0 auto;
+  color: #fff;
+}
+.ms .ms__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.ms .ms__footer {
+  margin-top: 145%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 32px;
+}
