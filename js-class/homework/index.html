@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>homework</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <select name="" id="js-select" onchange="changeValue()"></select>
+
+      <div id="infoArea">
+        <div id="name"></div>
+        <div id="color"></div>
+        <div id="price"></div>
+        <div id="memory"></div>
+      </div>
+      <div class="ms__footer">
+        <div class="ms__footer__icon">
+          <i class="fas fa-phone-volume"></i>
+        </div>
+        <div class="ms__footer__icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <div class="ms__footer__icon">
+          <i class="fab fa-chrome"></i>
+        </div>
+        <div class="ms__footer__icon">
+          <i class="fab fa-facebook-messenger"></i>
+        </div>
+        <div class="footer_icon">
+          <i class="fab fa-instagram"></i>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const phone = [
+      {
+        name: "iPhone 11 Pro",
+        color: "gray, silver, midnight green, gold",
+        price: "1,390,000~",
+        memory: "64GB, 256GB, 512GB"
+      },
+      {
+        name: "iPhone 11 Pro Max",
+        color: "gray, silver, midnight green, gold",
+        price: "1,550,000~",
+        memory: "64GB, 256GB, 512GB"
+      },
+      {
+        name: "iPhone 11",
+        color: "white, black, green, yellow, purple, red",
+        price: "990,000~",
+        memory: "64GB, 128GB, 256GB"
+      },
+      {
+        name: "iPhone XR",
+        color: "white, black, blue, yellow, coral, red",
+        price: "850,000~",
+        memory: "64GB, 128GB"
+      }
+    ];
+
+    const valueSetting = () => {
+      const selectBox = document.getElementById("js-select");
+
+      phone.map(p => {
+        const option = document.createElement("option");
+
+        option.text = p.name;
+        selectBox.appendChild(option);
+      });
+    };
+
+    const changeValue = () => {
+      const selectBox = document.getElementById("js-select");
+
+      const currentValue = selectBox.options[selectBox.selectedIndex].value;
+
+      phone.map(p => {
+        if (p.name === currentValue) {
+          console.log(p.name);
+          console.log(p.color);
+          console.log(p.price);
+          console.log(p.memory);
+
+          const name = document.getElementById("name");
+          const color = document.getElementById("color");
+          const price = document.getElementById("price");
+          const memory = document.getElementById("memory");
+
+          name.innerText = p.name;
+          color.innerText = p.color;
+          price.innerText = p.price;
+          memory.innerText = p.memory;
+        }
+      });
+    };
+    function init() {
+      valueSetting();
+    }
+    init();
+  </script>
+</html>
